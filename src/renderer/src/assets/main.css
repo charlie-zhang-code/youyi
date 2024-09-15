@@ -1,0 +1,38 @@
+@import 'base.css';
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  /* 防止用户选择文本 */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  /* 禁止鼠标右键菜单 */
+  -webkit-user-drag: none;
+  user-drag: none;
+
+  /* 禁用触摸设备上的长按操作 */
+  touch-action: none;
+}
+
+.win-btn {
+  width: 20px;
+  height: 20px;
+  background-color: transparent;
+  -webkit-app-region: no-drag;
+}
+
+.no-drag-btn {
+  -webkit-app-region: no-drag;
+}
+
+.mbg {
+  /*background-image: url('./wavy-lines.svg');*/
+  background-repeat: no-repeat;
+  background-size: cover;
+}

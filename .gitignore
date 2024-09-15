@@ -1,0 +1,9 @@
+node_modules
+dist
+out
+.DS_Store
+*.log*
+release
+resources/sherpa_module/**/**
+
+# virtual-store-dir-max-length=70
