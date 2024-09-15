@@ -4,6 +4,15 @@
 
 Vue 3 + TypeScript + Vite + Electron + Flask + SQLite3 + Python 3 实现前后端分离的桌面端会议助手。
 
+## 截图
+
+![home.png](docs/home.png)
+![create.png](docs/create.png)
+![create_1.png](docs/create_1.png)
+![record.png](docs/record.png)
+![management.png](docs/management.png)
+![summary.png](docs/summary.png)
+
 ## 安装指南
 
 请按照以下步骤安装和运行本应用：
