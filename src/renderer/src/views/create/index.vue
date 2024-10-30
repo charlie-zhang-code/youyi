@@ -33,7 +33,7 @@ const goToMeetingCreate = (meetingmode, rawdata = null) => {
         </n-button>
       </n-card>
 
-      <n-card hoverable>
+      <!-- <n-card hoverable>
         <template #header>
           <n-flex justify="center"> 录音转录 </n-flex>
         </template>
@@ -45,7 +45,7 @@ const goToMeetingCreate = (meetingmode, rawdata = null) => {
             <n-text depth="3"> 该模式将从音频转录进行保存会议 </n-text>
           </n-flex>
         </n-button>
-      </n-card>
+      </n-card> -->
     </n-flex>
   </n-flex>
 </template>

@@ -27,6 +27,7 @@
     "@vitejs/plugin-vue-jsx": "^4.0.1",
     "better-sqlite3": "^11.3.0",
     "electron-updater": "^6.1.7",
+    "md-editor-v3": "^4.21.2",
     "naudiodon2": "^2.4.0",
     "pinia": "^2.2.2",
     "pinia-plugin-persistedstate": "^4.0.1",

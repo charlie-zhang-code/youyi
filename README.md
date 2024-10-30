@@ -47,6 +47,15 @@ Python
 python main.py
 ```
 
+Docker
+
+```bash
+docker pull ollama/ollama
+# docker run -d -v ollama:/root/.ollama -p 11434:11434 --name ollama ollama/ollama
+docker run -d -p 11434:11434 --name ollama ollama/ollama
+ollama run qwen2.5
+```
+
 ## 技术栈
 
 - 前端：Vue 3, TypeScript, Vite, Electron
