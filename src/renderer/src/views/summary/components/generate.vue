@@ -1,26 +1,27 @@
 <script setup lang="ts">
 import { useMeetingStore } from '../../../stores/meet'
 import { useBoolean } from '../../../hooks/useBoolean'
-import { MdPreview, MdCatalog } from 'md-editor-v3';
-import 'md-editor-v3/lib/preview.css';
+import { MdPreview } from 'md-editor-v3'
+import 'md-editor-v3/lib/preview.css'
 
-const id = 'preview-only';
-const text = ref('Null');
-
+const id = 'preview-only'
+const text = ref('Null')
+const message = useMessage()
 const meetingStore = useMeetingStore()
 
 const { bool: loading, setTrue: startLoading, setFalse: endLoading } = useBoolean()
 const notification = useNotification()
+
 async function generate() {
   try {
     startLoading()
 
     notification.success({
-    content: '处理中',
-    meta: '请稍等片刻...',
-    duration: 2500,
-    keepAliveOnHover: true
-  })
+      content: '处理中',
+      meta: '请稍等片刻...',
+      duration: 2500,
+      keepAliveOnHover: true
+    })
     // 正在加载中
     // 发送请求
     // 正确地使用单引号定义 URL
@@ -45,11 +46,11 @@ async function generate() {
     text.value = data?.response
 
     notification.success({
-    content: '处理完成',
-    meta: '处理完成',
-    duration: 2500,
-    keepAliveOnHover: true
-  })
+      content: '处理完成',
+      meta: '处理完成',
+      duration: 2500,
+      keepAliveOnHover: true
+    })
 
     endLoading()
   } catch (error) {
@@ -58,8 +59,22 @@ async function generate() {
   }
 }
 
-function exportWord() {
-  console.log("export")
+async function exportDocument() {
+  const data = JSON.stringify({
+    title: meetingStore.generateData.name,
+    da: 'success',
+    ab: 'success'
+  })
+  try {
+    const { success } = await window.api.exportDocument(data)
+    if (success) {
+      message.success('导出成功')
+    } else {
+      message.error('导出失败')
+    }
+  } catch (error) {
+    console.error(error) // 处理可能发生的错误
+  }
 }
 </script>
 
@@ -93,11 +108,11 @@ function exportWord() {
         <template #2>
           <n-flex class="p-l-8px" align="center">
             <n-card>
-              <template #header> 预览 </template>
+              <template #header> 预览</template>
               <template #header-extra>
                 <n-flex>
                   <n-button type="primary" @click="generate" :loading="loading">生成</n-button>
-                  <n-button type="primary" @click="exportWord">确认</n-button>
+                  <n-button type="primary" @click="exportDocument">确认</n-button>
                 </n-flex>
               </template>
             </n-card>

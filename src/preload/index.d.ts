@@ -22,6 +22,8 @@ declare global {
       getMeetingById: (meetingId) => Promise
       deleteMeetingById: (meetingId) => Promise
       updateMeetingById: (meetingId, rawData) => Promise
+
+      exportDocument: (rawData) => Promise
     }
   }
 }

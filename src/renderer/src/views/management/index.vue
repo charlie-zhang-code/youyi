@@ -70,7 +70,7 @@ const columns: DataTableColumns = [
     render: (row) => {
       return (
         <NFlex justify="center">
-          {/* <NButton
+          <NButton
             size="small"
             render-icon={renderIcon('icon-park-outline:eyes')}
             onClick={() => viewAction(row)}
@@ -84,7 +84,7 @@ const columns: DataTableColumns = [
             onClick={() => editAction(row)}
           >
             编辑
-          </NButton> */}
+          </NButton>
           <NPopconfirm onPositiveClick={() => deleteAction(row.id)}>
             {{
               default: () => '确认删除',

@@ -77,6 +77,19 @@ const api = {
         }
       })
     })
+  },
+
+  exportDocument: (rawData) => {
+    return new Promise((resolve, reject) => {
+      ipcRenderer.send('export-document', { rawData })
+      ipcRenderer.once('export-document-response', (_event, response) => {
+        if (response.success) {
+          resolve(response)
+        } else {
+          reject(response)
+        }
+      })
+    })
   }
 }
 

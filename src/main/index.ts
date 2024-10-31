@@ -1,4 +1,4 @@
-import { app, shell, BrowserWindow, ipcMain } from 'electron'
+import { app, shell, BrowserWindow, ipcMain, dialog } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
@@ -8,6 +8,12 @@ import dbFile from '../../resources/db.sqlite?asset&asarUnpack'
 import Database from 'better-sqlite3'
 
 import audioWorker from './audio_worker.ts?modulePath'
+
+import inputDocx from '../../resources/input.docx?asset&asarUnpack'
+
+import docxtemplater from 'docxtemplater'
+import PizZip from 'pizzip'
+import fs from 'fs'
 
 let mainWindow: BrowserWindow | null = null
 
@@ -322,9 +328,55 @@ app.whenReady().then(() => {
     event.sender.send('update-meeting-response', { success: true })
   })
 
+  ipcMain.on('export-document', (event, { rawData }) => {
+    const content = fs.readFileSync(
+      inputDocx,
+      'binary'
+    )
+    const zip = new PizZip(content)
+    const doc = new docxtemplater(zip, {
+      paragraphLoop: true,
+      linebreaks: true
+    })
+
+    const data = JSON.parse(rawData)
+
+    doc.setData(data)
+
+    doc.render()
+
+    const buf = doc.getZip().generate({
+      type: 'nodebuffer',
+      compression: 'DEFLATE'
+    })
+
+    if (mainWindow) {
+      dialog
+        .showOpenDialog(mainWindow, {
+          properties: ['openDirectory', 'createDirectory']
+        })
+        .then(async (result) => {
+          if (!result.canceled) {
+            const selectedPath = result.filePaths
+            const targetPath = join(selectedPath[0], `${data['title']}.docx`)
+            await fs.writeFile(targetPath, buf, (err) => {
+              if (err) {
+                console.log(err)
+              }
+            })
+
+            event.sender.send('export-document-response', { success: true })
+          }
+        })
+        .catch((err) => {
+          console.error(err)
+        })
+    }
+  })
+
   createWindow()
 
-  app.on('activate', function () {
+  app.on('activate', function() {
     if (BrowserWindow.getAllWindows().length === 0) createWindow()
   })
 })
