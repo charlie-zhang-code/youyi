@@ -328,7 +328,7 @@ app.whenReady().then(() => {
     event.sender.send('update-meeting-response', { success: true })
   })
 
-  ipcMain.on('export-document', (event, { rawData }) => {
+  ipcMain.on('export-document', (event,  rawData ) => {
     const content = fs.readFileSync(
       inputDocx,
       'binary'
@@ -339,7 +339,9 @@ app.whenReady().then(() => {
       linebreaks: true
     })
 
+    console.log(rawData)
     const data = JSON.parse(rawData)
+    console.log(data)
 
     doc.setData(data)
 

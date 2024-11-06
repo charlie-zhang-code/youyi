@@ -43,7 +43,9 @@ async function generate() {
 
     // 解析 JSON 数据
     const data = await response.json()
-    text.value = data?.response
+    text.value = JSON.parse(data?.response)
+
+    text.value['title'] = meetingStore.generateData.name
 
     notification.success({
       content: '处理完成',
@@ -59,13 +61,12 @@ async function generate() {
   }
 }
 
+const dataS = ref(meetingStore.generateData)
+
 async function exportDocument() {
-  const data = JSON.stringify({
-    title: meetingStore.generateData.name,
-    da: 'success',
-    ab: 'success'
-  })
   try {
+    const data = JSON.stringify(text.value)
+    console.log(data)
     const { success } = await window.api.exportDocument(data)
     if (success) {
       message.success('导出成功')
@@ -108,7 +109,7 @@ async function exportDocument() {
         <template #2>
           <n-flex class="p-l-8px" align="center">
             <n-card>
-              <template #header> 预览</template>
+              <template #header>操作</template>
               <template #header-extra>
                 <n-flex>
                   <n-button type="primary" @click="generate" :loading="loading">生成</n-button>
@@ -117,13 +118,27 @@ async function exportDocument() {
               </template>
             </n-card>
           </n-flex>
-          <n-scrollbar>
-            <n-flex vertical class="p-l-8px">
-              <n-card hoverable class="m-b-20">
-                <MdPreview :editorId="id" :modelValue="text" />
+          <!-- <n-scrollbar> -->
+            <!-- <n-flex vertical class="p-l-8px m-b-20"> -->
+              <!--              <n-card hoverable>-->
+              <!--                <MdPreview :editorId="id" :modelValue="text" />-->
+              <!--              </n-card>-->
+              <!-- <n-card hoverable>
+                <n-form>
+                  <n-form-item label="标题">
+                    <n-input v-model:value="dataS.name" />
+                  </n-form-item>
+
+                </n-form>
+              </n-card>
+
+              <n-card>
+                <pre>
+                  {{JSON.stringify(text, null, 2)}}
+                </pre>
               </n-card>
             </n-flex>
-          </n-scrollbar>
+          </n-scrollbar> -->
         </template>
       </n-split>
     </n-layout>
