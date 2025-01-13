@@ -7,3 +7,4 @@ release
 resources/sherpa_module/**/**
 
 # virtual-store-dir-max-length=70
+.idea

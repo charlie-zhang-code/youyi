@@ -62,25 +62,15 @@ ollama run qwen2.5
 - 后端：Flask, Python 3, SQLite3
 - 数据库：SQLite3
 
-## 贡献指南
 
-如果你希望为这个项目贡献代码，请遵循以下步骤：
+## 运行要准备sherpa的这几个文件
 
-1. Fork这个仓库。
-2. 创建一个新的分支。
-3. 提交你的更改。
-4. 创建一个Pull Request。
+![alt text](docs/image01.png)
 
-## 开源许可证
+![alt text](docs/image02.png)
 
-本项目采用[MIT许可证](LICENSE)。
+![alt text](docs/image03.png)
 
-## 联系我们
+![alt text](docs/image04.png)
 
-如果你有任何问题或建议，请通过以下方式联系我们：
-
-- 邮箱：[z_shey@163.com](mailto:z_shey@163.com)
-
-## 鸣谢
-
-感谢所有为本项目做出贡献的开发者和用户。
+有个前端的package要自己再编译一次，具体是哪里给忘了
