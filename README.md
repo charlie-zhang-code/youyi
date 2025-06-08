@@ -167,6 +167,6 @@ A: 确保：
 2. 已正确下载 Qwen2.5 模型
 3. 防火墙未阻止 11434 端口
 
-
 ## 📜 许可证
-MIT License © 2025 Charlie Zhang
+
+本项目采用 [MIT 许可证](./LICENSE)
