@@ -36,9 +36,9 @@ graph TD
 | 功能界面   | 预览                                   |
 | ---------- | -------------------------------------- |
 | 首页       | ![home.png](docs/home.png)             |
-| 创建会议   | ![create.png](docs/create.png)         |
-| 会议详情   | ![create_1.png](docs/create_1.png)     |
-| 录音管理   | ![record.png](docs/record.png)         |
+| 生成模式   | ![create.png](docs/create.png)         |
+| 会议创建   | ![create_1.png](docs/create_1.png)     |
+| 会议记录   | ![record.png](docs/record.png)         |
 | 会议管理   | ![management.png](docs/management.png) |
 | AI摘要管理 | ![summary.png](docs/summary.png)       |
 
