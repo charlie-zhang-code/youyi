@@ -19,7 +19,7 @@
 ```mermaid
 graph TD
   A[Electron 前端] -->|REST API| B[Flask 后端]
-  B --> C[(SQLite 数据库)]
+  A --> C[(SQLite 数据库)]
   A --> D[Sherpa 语音引擎]
   B --> E[Ollama AI 服务]
   E --> F[Qwen2.5 大模型]
